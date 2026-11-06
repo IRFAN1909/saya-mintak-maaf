@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maafkan Saya? 💗</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; display: grid; place-items: center;
+      padding: 24px; font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+      color: #573b48; overflow: hidden;
+      background: radial-gradient(circle at top left, #fff4f7, transparent 45%),
+                  linear-gradient(135deg, #ffe0e9, #f6e7ff);
+    }
+    .card {
+      width: min(100%, 460px); padding: 38px 26px; text-align: center;
+      border: 1px solid rgba(255,255,255,.8); border-radius: 28px;
+      background: rgba(255,255,255,.82); box-shadow: 0 18px 60px #9b597326;
+      backdrop-filter: blur(10px);
+    }
+    .heart { font-size: 54px; margin-bottom: 10px; animation: beat 1.2s infinite; }
+    h1 { font-size: clamp(26px, 7vw, 34px); margin: 8px 0 12px; }
+    p { line-height: 1.65; color: #806673; }
+    .buttons { display: flex; justify-content: center; align-items: center; gap: 16px; margin-top: 28px; min-height: 58px; }
+    button {
+      border: 0; border-radius: 999px; padding: 13px 27px; font-size: 16px;
+      font-weight: 700; cursor: pointer; transition: transform .18s, box-shadow .18s;
+    }
+    button:focus-visible { outline: 3px solid #a65b83; outline-offset: 4px; }
+    #yes { color: white; background: #e56f9a; box-shadow: 0 7px 18px #e56f9a55; }
+    #yes:hover { transform: translateY(-2px) scale(1.04); }
+    #no { color: #79586a; background: #f5eaf0; position: relative; }
+    .note {
+      display: none; margin-top: 26px; padding: 20px; border-radius: 18px;
+      background: #fff2f6; text-align: left; animation: appear .45s ease both;
+    }
+    .note h2 { text-align: center; margin: 0 0 12px; color: #c6537d; }
+    .note p { color: #694d5a; white-space: pre-line; margin: 0; }
+    .tiny { font-size: 12px; margin-top: 22px; opacity: .7; }
+    @keyframes beat { 50% { transform: scale(1.12); } }
+    @keyframes appear { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="heart">💗</div>
+    <h1>Sudi tak maafkan saya?</h1>
+    <p>Saya ada sesuatu yang nak saya sampaikan kepada awak...</p>
+    <div class="buttons" id="buttons">
+      <button id="yes" type="button">Yes, saya maafkan 💕</button>
+      <button id="no" type="button">Tak nak</button>
+    </div>
+    <section class="note" id="note" aria-live="polite">
+      <h2>Terima kasih 🥺❤️</h2>
+      <p>Saya betul-betul minta maaf atas apa yang dah berlaku. Saya sedar mungkin kata-kata atau tindakan saya telah buat awak terasa hati.
+
+Saya tak nak bagi alasan. Saya cuma nak awak tahu yang saya menyesal dan saya akan cuba perbaiki diri supaya perkara yang sama tak berulang.
+
+Terima kasih sebab sudi maafkan saya. Saya sangat hargai awak. ❤️</p>
+    </section>
+    <div class="tiny">Dibuat dengan ikhlas 💌</div>
+  </main>
+  <script>
+    const noButton = document.getElementById('no');
+    const yesButton = document.getElementById('yes');
+    const card = document.querySelector('.card');
+    const note = document.getElementById('note');
+    function runAway() {
+    const cardRect = card.getBoundingClientRect();
+    const buttonRect = noButton.getBoundingClientRect();
+
+    const padding = 14;
+
+    const maxX = card.clientWidth - buttonRect.width - padding;
+    const maxY = card.clientHeight - buttonRect.height - padding;
+
+    noButton.style.position = 'absolute';
+    noButton.style.left = (padding + Math.random() * (maxX - padding)) + 'px';
+    noButton.style.top = (padding + Math.random() * (maxY - padding)) + 'px';
+}
+    noButton.addEventListener('mouseenter', runAway);
+    noButton.addEventListener('touchstart', (event) => { event.preventDefault(); runAway(); }, {passive:false});
+    noButton.addEventListener('click', runAway);
+    yesButton.addEventListener('click', () => {
+      note.style.display = 'block';
+      document.getElementById('buttons').style.display = 'none';
+      noButton.style.display = 'none';
+      yesButton.textContent = 'Terima kasih ❤️';
+      note.scrollIntoView({behavior:'smooth', block:'nearest'});
+    });
+  </script>
+</body>
+</html>
