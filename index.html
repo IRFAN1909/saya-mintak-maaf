@@ -19,7 +19,15 @@
       background: rgba(255,255,255,.82); box-shadow: 0 18px 60px #9b597326;
       backdrop-filter: blur(10px);
     }
-    .heart { font-size: 54px; margin-bottom: 10px; animation: beat 1.2s infinite; }
+    .heart {
+    margin-bottom: 15px;
+    }
+
+    .heart img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    }
     h1 { font-size: clamp(26px, 7vw, 34px); margin: 8px 0 12px; }
     p { line-height: 1.65; color: #806673; }
     .buttons { display: flex; justify-content: center; align-items: center; gap: 16px; margin-top: 28px; min-height: 58px; }
@@ -44,7 +52,9 @@
 </head>
 <body>
   <main class="card">
-    <div class="heart">💗</div>
+    <div class="heart">
+    <img src="./IMG_5505.gif" alt="Sowwy cat">
+    </div>
     <h1>Sudi tak maafkan saya?</h1>
     <p>Saya ada sesuatu yang nak saya sampaikan kepada awak...</p>
     <div class="buttons" id="buttons">
